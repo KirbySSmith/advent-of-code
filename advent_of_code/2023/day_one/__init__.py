@@ -38,11 +38,13 @@ values_file = open('values.txt', 'r')
 values = values_file.readlines()
 
 value_sum = 0
+forward_regex = get_regex(False)
+reverse_regex = get_regex(True)
 for value in values:
-    match = re.search(get_regex(False), value)
+    match = re.search(forward_regex, value)
     first_digit = convert_to_number(match.group(1), False)
 
-    last_match = re.search(get_regex(True), value[::-1])
+    last_match = re.search(reverse_regex, value[::-1])
     last_digit = convert_to_number(last_match.group(1), True)
 
     value_sum += int(first_digit + last_digit)
